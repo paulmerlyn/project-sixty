@@ -52,24 +52,6 @@ Contestants must speak for 1 minute without:
 3. One point to the speaker for an incorrect challenge
 4. One point to a speaker who completes an entire minute
 
-## Screenshots
-
-### Main Game Interface
-
-![Main Game Interface](screenshots/main-interface.png)
-
-### Player Management
-
-![Player Management](screenshots/player-management.png)
-
-### Scoreboard View
-
-![Scoreboard View](screenshots/scoreboard.png)
-
-### Topic Management
-
-![Topic Management](screenshots/topic-management.png)
-
 ## Technical Details
 
 - **Storage**: Uses browser localStorage to persist player data, scores, and custom topics
