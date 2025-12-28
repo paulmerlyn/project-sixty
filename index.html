@@ -173,6 +173,24 @@
         padding: 0;
         margin: 12px 0;
       }
+      
+      .inner-details summary {
+        margin-left: 0;
+        margin-right: 0;
+      }
+      
+      .inner-details p {
+        padding: 12px 16px;
+        text-align: left;
+      }
+      
+      .inner-details ol {
+        padding: 12px 16px;
+      }
+      
+      .scoring-details ol {
+        margin-left: 16px;
+      }
 
       summary {
         cursor: pointer;
@@ -699,6 +717,16 @@
         <li>repetition</li>
       </ul>
       <details class="inner-details">
+        <summary>Finer points</summary>
+        <p style="text-align: left; margin-bottom: 12px;">
+          <strong>Hesitation</strong> means noticeable ums, pauses, lip-smacks, etc.<br>
+          <strong>Deviation</strong> means straying off topic (though brief tangents are allowable if the speaker returns to the topic).<br>
+          <strong>Repetition</strong> means excessive reuse of a word. Exceptions: words in the topic and common link words such as "and", "a", and "the" are allowable.<br>
+          <strong>Plural</strong> forms (e.g. cat and cats) and <strong>derivatives</strong> (e.g. bake, baking, and baked) are distinct words and may each be used once.<br>
+        </p>
+      </details>
+      
+      <details class="inner-details scoring-details">
         <summary>Scoring</summary>
         <ol>
           <li>One point for speaking on the one-minute mark</li>
