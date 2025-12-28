@@ -35,7 +35,7 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        text-shadow: 0 4px 20px rgba(52, 152, 219, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2);
       }
       
       .subtitle {
@@ -49,6 +49,7 @@
         border-bottom: 2px solid #3498db;
         padding-bottom: 8px;
         display: inline-block;
+        text-shadow: 0 2px 10px rgba(52, 152, 219, 0.2);
       }
 
       #rules {
@@ -199,10 +200,13 @@
         transition: all 0.3s ease;
         font-family: 'Inter', sans-serif;
       }
+      
+      details[open] {
+        border-color: #3498db;
+      }
 
       details[open] {
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
-        border-color: #3498db;
       }
 
       .inner-details {
@@ -763,7 +767,7 @@
       <p class="subtitle">Family & Friends Edition</p>
     </div>
     <div id="rules">
-      <details class="inner-details">
+      <details class="inner-details" style="border: 1px solid #eaeaea;">
         <summary>Rules</summary>
         <p>Generate (or select) a topic. Start the timer. The player must speak for one minute without:</p>
         <ul>
@@ -776,7 +780,7 @@
         <p>For an incorrect challenge, the speaker resumes.</p>
         <p>When the minute is up, rotate to the next player.</p>
       </details>
-      <details class="inner-details">
+      <details class="inner-details" style="border: 1px solid #eaeaea;">
         <summary>Finer points</summary>
         <p style="text-align: left;">
           <strong>Hesitation</strong> means noticeable ums, pauses, lip-smacks, etc.<br>
@@ -786,7 +790,7 @@
         </p>
       </details>
       
-      <details class="inner-details scoring-details">
+      <details class="inner-details scoring-details" style="border: 1px solid #eaeaea;">
         <summary>Scoring</summary>
         <ol>
           <li>One point for the player speaking at the one-minute mark</li>
@@ -824,7 +828,7 @@
         <a id="topicAnchor" style="display: block; position: relative; top: -100px; visibility: hidden;"></a>
       </div>
     </div>
-    <details>
+    <details style="border: 1px solid #eaeaea;">
       <summary>Manage Players</summary>
       <div id="contestantManager">
         <div style="margin-bottom: 15px; padding: 10px; background-color: #f9f9f9; border-radius: 5px; display: flex; gap: 12px; align-items: center;">
@@ -834,11 +838,11 @@
       </div>
       <div id="contestantList"></div>
     </details>
-    <details>
+    <details style="border: 1px solid #eaeaea;">
       <summary>Scoreboard</summary>
       <div id="scoreboard"></div>
     </details>
-    <details>
+    <details style="border: 1px solid #eaeaea;">
       <summary>Topics Manager</summary>
       <div id="topicsManager"></div>
     </details>
