@@ -102,3 +102,6 @@ Potential features for future versions:
 - Themes and visual customization
 - Export/import game data
 - Mobile app version
+
+test commit 1
+
