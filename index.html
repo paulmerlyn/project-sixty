@@ -73,6 +73,17 @@
       #rules ul {
         padding-left: 24px;
         color: #555;
+        list-style-type: none;
+      }
+      
+      #rules ul li::before {
+        content: "•";
+        color: #3498db;
+        font-weight: bold;
+        display: inline-block;
+        width: 1em;
+        margin-left: -1em;
+        font-size: 1.2em;
       }
 
       #rules li {
@@ -311,6 +322,15 @@
         background-color: #c0392b;
         transform: scale(1.05);
       }
+      
+      .remove-btn:active {
+        background-color: #a02e22;
+        transform: scale(0.9);
+      }
+      
+      .remove-btn.removed {
+        animation: removedPulse 0.4s ease;
+      }
 
       .scoreboard-item {
         display: flex;
@@ -417,6 +437,254 @@
         background-color: #c0392b;
         transform: scale(1.05);
       }
+      
+      .remove-topic-btn:active {
+        background-color: #a02e22;
+        transform: scale(0.9);
+      }
+      
+      /* Animation for remove button */
+      @keyframes removedPulse {
+        0% { transform: scale(1); background-color: #e74c3c; box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.4); }
+        30% { transform: scale(1.15); background-color: #c0392b; box-shadow: 0 0 0 8px rgba(231, 76, 60, 0.2); }
+        70% { transform: scale(0.95); background-color: #a02e22; box-shadow: 0 0 0 12px rgba(231, 76, 60, 0.1); }
+        100% { transform: scale(1); background-color: #e74c3c; box-shadow: 0 0 0 0 rgba(231, 76, 60, 0); }
+      }
+      
+      .remove-topic-btn.removed {
+        animation: removedPulse 0.4s ease;
+      }
+      
+      /* Animation for add buttons (blue +) */
+      @keyframes addedPulse {
+        0% { transform: scale(1); background-color: #3498db; box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.4); }
+        30% { transform: scale(1.15); background-color: #2980b9; box-shadow: 0 0 0 8px rgba(52, 152, 219, 0.2); }
+        70% { transform: scale(0.95); background-color: #1f6fb2; box-shadow: 0 0 0 12px rgba(52, 152, 219, 0.1); }
+        100% { transform: scale(1); background-color: #3498db; box-shadow: 0 0 0 0 rgba(52, 152, 219, 0); }
+      }
+      
+      #addContestant:active, #addTopicBtn:active {
+        transform: scale(0.9);
+      }
+      
+      #addContestant.added, #addTopicBtn.added {
+        animation: addedPulse 0.4s ease;
+      }
+      
+      /* Animation for score buttons - more pronounced */
+      @keyframes plusScorePulse {
+        0% { transform: scale(1); background-color: #2ecc71; box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.5); }
+        30% { transform: scale(1.3); background-color: #27ae60; box-shadow: 0 0 0 12px rgba(46, 204, 113, 0.3); }
+        70% { transform: scale(0.9); background-color: #239b56; box-shadow: 0 0 0 16px rgba(46, 204, 113, 0.2); }
+        100% { transform: scale(1); background-color: #2ecc71; box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
+      }
+      
+      @keyframes minusScorePulse {
+        0% { transform: scale(1); background-color: #e74c3c; box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.5); }
+        30% { transform: scale(1.3); background-color: #c0392b; box-shadow: 0 0 0 12px rgba(231, 76, 60, 0.3); }
+        70% { transform: scale(0.9); background-color: #a02e22; box-shadow: 0 0 0 16px rgba(231, 76, 60, 0.2); }
+        100% { transform: scale(1); background-color: #e74c3c; box-shadow: 0 0 0 0 rgba(231, 76, 60, 0); }
+      }
+      
+      .plus-btn:active, .minus-btn:active {
+        transform: scale(0.85);
+      }
+      
+      .plus-btn.scored {
+        animation: plusScorePulse 0.5s ease;
+      }
+      
+      .minus-btn.scored {
+        animation: minusScorePulse 0.5s ease;
+      }
+      
+      /* Animation for generate button */
+      @keyframes generatePulse {
+        0% { transform: scale(1); background-color: #2ecc71; box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.4); }
+        30% { transform: scale(1.08); background-color: #27ae60; box-shadow: 0 0 0 10px rgba(46, 204, 113, 0.2); }
+        70% { transform: scale(0.98); background-color: #239b56; box-shadow: 0 0 0 12px rgba(46, 204, 113, 0.1); }
+        100% { transform: scale(1); background-color: #2ecc71; box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
+      }
+      
+      #generateBtn:active {
+        transform: scale(0.95);
+      }
+      
+      #generateBtn.generated {
+        animation: generatePulse 0.5s ease;
+      }
+      
+      /* Animation for timer buttons */
+      @keyframes timerPulse {
+        0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.3); }
+        30% { transform: scale(1.08); box-shadow: 0 0 0 6px rgba(52, 152, 219, 0.15); }
+        70% { transform: scale(0.98); box-shadow: 0 0 0 8px rgba(52, 152, 219, 0.1); }
+        100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(52, 152, 219, 0); }
+      }
+      
+      button:active {
+        transform: scale(0.95);
+      }
+      
+      button.timer-action {
+        animation: timerPulse 0.3s ease;
+      }
+      
+      .select-topic-btn:hover {
+        background-color: #27ae60;
+        transform: scale(1.05);
+      }
+      
+      /* Click animation for select button */
+      .select-topic-btn:active {
+        background-color: #1e8449;
+        transform: scale(0.9);
+      }
+      
+      /* Animation for when topic is selected - more pronounced */
+      @keyframes selectedPulse {
+        0% { transform: scale(1); background-color: #2ecc71; box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.4); }
+        30% { transform: scale(1.2); background-color: #239b56; box-shadow: 0 0 0 10px rgba(46, 204, 113, 0.2); }
+        70% { transform: scale(0.95); background-color: #1e8449; box-shadow: 0 0 0 15px rgba(46, 204, 113, 0.1); }
+        100% { transform: scale(1); background-color: #2ecc71; box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
+      }
+      
+      .select-topic-btn.selected {
+        animation: selectedPulse 0.5s ease;
+      }
+      
+      /* Custom tooltip for faster appearance */
+      .select-topic-btn, .remove-topic-btn, .remove-btn, #addContestant, #addTopicBtn, #generateBtn {
+        position: relative;
+      }
+      
+      .select-topic-btn::after {
+        content: 'Set this topic';
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #333;
+        color: white;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.1s ease;
+        margin-bottom: 5px;
+        z-index: 100;
+      }
+      
+      .remove-topic-btn::after {
+        content: 'Remove topic';
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #333;
+        color: white;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.1s ease;
+        margin-bottom: 5px;
+        z-index: 100;
+      }
+      
+      .remove-btn::after {
+        content: 'Remove player';
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #333;
+        color: white;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.1s ease;
+        margin-bottom: 5px;
+        z-index: 100;
+      }
+      
+      .select-topic-btn:hover::after,
+      .remove-topic-btn:hover::after,
+      .remove-btn:hover::after {
+        opacity: 1;
+      }
+      
+      #addTopicBtn::after {
+        content: 'Add topic';
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #333;
+        color: white;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.1s ease;
+        margin-bottom: 5px;
+        z-index: 100;
+      }
+      
+      #addContestant::after {
+        content: 'Add player';
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #333;
+        color: white;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.1s ease;
+        margin-bottom: 5px;
+        z-index: 100;
+      }
+      
+      #generateBtn::after {
+        content: 'Generate (or pick from Topics Manager)';
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #333;
+        color: white;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.1s ease;
+        margin-bottom: 5px;
+        z-index: 100;
+        max-width: 300px;
+        text-align: center;
+      }
+      
+      #addTopicBtn:hover::after,
+      #addContestant:hover::after,
+      #generateBtn:hover::after {
+        opacity: 1;
+      }
     </style>
   </head>
   <body>
@@ -462,6 +730,7 @@
           Generate Topic
         </button>
         <div id="topicDisplay"></div>
+        <a id="topicAnchor" style="display: block; position: relative; top: -100px; visibility: hidden;"></a>
       </div>
     </div>
     <details>
@@ -498,7 +767,7 @@
         'Unicorns, gryphons, and dragons',
         'The tooth fairy',
         'Gilmore Girls',
-        'First class travel',
+        'First-class travel',
         'Social media',
         'Should adults be allowed to access social media?',
         'Childhood best friends',
@@ -639,7 +908,8 @@
           tableHTML += `<tr style="border-bottom: 1px solid #eee;">
                     <td style="padding: 8px;">${topic}</td>
                     <td style="padding: 8px; text-align: right;">
-                        <button class="remove-topic-btn" data-index="${index}" style="background-color: #f44336; color: white; border: none; border-radius: 3px; cursor: pointer; padding: 5px 10px; font-size: 14px;">-</button>
+                        <button class="select-topic-btn" data-topic="${topic}" style="background-color: #2ecc71; color: white; border: none; border-radius: 3px; cursor: pointer; padding: 5px 10px; font-size: 14px; margin-right: 5px;">✓</button>
+                        <button class="remove-topic-btn" data-topic="${topic}" style="background-color: #f44336; color: white; border: none; border-radius: 3px; cursor: pointer; padding: 5px 10px; font-size: 14px;">–</button>
                     </td>
                 </tr>`;
         });
@@ -671,6 +941,15 @@
               playCelebratorySound();
             }
           }, 100);
+          
+          // Add visual feedback to the Start button
+          const startBtn = document.querySelector('button[onclick="startTimer()"]');
+          if (startBtn) {
+            startBtn.classList.add('timer-action');
+            setTimeout(() => {
+              startBtn.classList.remove('timer-action');
+            }, 300);
+          }
         }
       }
 
@@ -736,6 +1015,15 @@
       function stopTimer() {
         clearInterval(timerId);
         isRunning = false;
+        
+        // Add visual feedback to the Stop button
+        const stopBtn = document.querySelector('button[onclick="stopTimer()"]');
+        if (stopBtn) {
+          stopBtn.classList.add('timer-action');
+          setTimeout(() => {
+            stopBtn.classList.remove('timer-action');
+          }, 300);
+        }
       }
 
       function resumeTimer() {
@@ -757,16 +1045,43 @@
         updateDisplay();
         clearInterval(timerId);
         isRunning = false;
+        
+        // Add visual feedback to the Reset button
+        const resetBtn = document.querySelector('button[onclick="resetTimer()"]');
+        if (resetBtn) {
+          resetBtn.classList.add('timer-action');
+          setTimeout(() => {
+            resetBtn.classList.remove('timer-action');
+          }, 300);
+        }
       }
 
       function add5() {
         timeLeft = Math.min(60, timeLeft + 5);
         updateDisplay();
+        
+        // Add visual feedback to the +5 button
+        const add5Btn = document.querySelector('button[onclick="add5()"]');
+        if (add5Btn) {
+          add5Btn.classList.add('timer-action');
+          setTimeout(() => {
+            add5Btn.classList.remove('timer-action');
+          }, 300);
+        }
       }
 
       function sub5() {
         timeLeft = Math.max(0, timeLeft - 5);
         updateDisplay();
+        
+        // Add visual feedback to the -5 button
+        const sub5Btn = document.querySelector('button[onclick="sub5()"]');
+        if (sub5Btn) {
+          sub5Btn.classList.add('timer-action');
+          setTimeout(() => {
+            sub5Btn.classList.remove('timer-action');
+          }, 300);
+        }
       }
 
       const generateBtn = document.getElementById('generateBtn');
@@ -795,7 +1110,7 @@
         players.forEach((player, index) => {
           const div = document.createElement('div');
           div.className = 'contestant-item';
-          div.innerHTML = `${player.name} <button class="remove-btn" data-index="${index}">-</button>`;
+          div.innerHTML = `${player.name} <button class="remove-btn" data-index="${index}">–</button>`;
           contestantList.appendChild(div);
         });
         localStorage.setItem('players', JSON.stringify(players));
@@ -814,6 +1129,12 @@
       generateBtn.addEventListener('click', () => {
         const randomIndex = Math.floor(Math.random() * topics.length);
         topicDisplay.textContent = topics[randomIndex];
+        
+        // Add visual feedback
+        generateBtn.classList.add('generated');
+        setTimeout(() => {
+          generateBtn.classList.remove('generated');
+        }, 500);
       });
 
       addContestantBtn.addEventListener('click', () => {
@@ -821,6 +1142,13 @@
         if (name) {
           players.push({ name: name, score: 0 });
           newContestantInput.value = '';
+          
+          // Add visual feedback
+          addContestantBtn.classList.add('added');
+          setTimeout(() => {
+            addContestantBtn.classList.remove('added');
+          }, 400);
+          
           renderContestants();
           renderScoreboard();
         }
@@ -835,20 +1163,44 @@
       contestantList.addEventListener('click', (e) => {
         if (e.target.classList.contains('remove-btn')) {
           const index = parseInt(e.target.dataset.index);
-          players.splice(index, 1);
-          renderContestants();
-          renderScoreboard();
+          const button = e.target;
+          
+          // Add visual feedback - pulse animation
+          button.classList.add('removed');
+          
+          // Remove player after animation
+          setTimeout(() => {
+            players.splice(index, 1);
+            renderContestants();
+            renderScoreboard();
+          }, 400);
         }
       });
 
       scoreboard.addEventListener('click', (e) => {
         const index = parseInt(e.target.dataset.index);
+        const button = e.target;
+        
         if (e.target.classList.contains('plus-btn')) {
           players[index].score++;
+          
+          // Add visual feedback
+          button.classList.add('scored');
+          setTimeout(() => {
+            button.classList.remove('scored');
+          }, 300);
+          
           renderScoreboard();
           localStorage.setItem('players', JSON.stringify(players));
         } else if (e.target.classList.contains('minus-btn')) {
           players[index].score--;
+          
+          // Add visual feedback
+          button.classList.add('scored');
+          setTimeout(() => {
+            button.classList.remove('scored');
+          }, 300);
+          
           renderScoreboard();
           localStorage.setItem('players', JSON.stringify(players));
         }
@@ -858,29 +1210,71 @@
       renderScoreboard();
       renderTopics();
 
-      // Add event listener for topic management (add and remove)
+      // Add event listener for topic management (add, remove, and select)
       document
         .getElementById('topicsManager')
         .addEventListener('click', (e) => {
           if (e.target.classList.contains('remove-topic-btn')) {
-            const index = parseInt(e.target.dataset.index);
-            const topicToDelete = topics[index];
+            const topicToDelete = e.target.dataset.topic;
+            const button = e.target;
 
-            // Add to deleted topics list
-            if (!deletedTopics.includes(topicToDelete)) {
-              deletedTopics.push(topicToDelete);
-              localStorage.setItem(
-                'deletedTopics',
-                JSON.stringify(deletedTopics)
-              );
-            }
+            // Add visual feedback - pulse animation
+            button.classList.add('removed');
+            
+            // Remove from current topics and re-render after animation
+            setTimeout(() => {
+              // Add to deleted topics list
+              if (!deletedTopics.includes(topicToDelete)) {
+                deletedTopics.push(topicToDelete);
+                localStorage.setItem(
+                  'deletedTopics',
+                  JSON.stringify(deletedTopics)
+                );
+              }
 
-            // Remove from current topics and re-render
-            topics.splice(index, 1);
-            renderTopics();
-            localStorage.setItem('topics', JSON.stringify(topics));
+              // Remove from current topics and re-render
+              const index = topics.indexOf(topicToDelete);
+              if (index !== -1) {
+                topics.splice(index, 1);
+              }
+              renderTopics();
+              localStorage.setItem('topics', JSON.stringify(topics));
+            }, 400);
+          } else if (e.target.classList.contains('select-topic-btn')) {
+            const selectedTopic = e.target.dataset.topic;
+            topicDisplay.textContent = selectedTopic;
+            
+            // Add visual feedback - pulse animation
+            e.target.classList.add('selected');
+            
+            // Scroll to center the topic display panel in the viewport
+            setTimeout(() => {
+              const anchor = document.getElementById('topicAnchor');
+              if (anchor) {
+                const anchorPosition = anchor.getBoundingClientRect().top + window.scrollY;
+                const viewportHeight = window.innerHeight;
+                const targetPosition = anchorPosition - (viewportHeight / 2) + 100; // Center with offset
+                
+                window.scrollTo({
+                  top: targetPosition,
+                  behavior: 'smooth'
+                });
+              }
+            }, 100);
+            
+            // Remove the class after animation completes
+            setTimeout(() => {
+              e.target.classList.remove('selected');
+            }, 500);
           } else if (e.target.id === 'addTopicBtn') {
             addNewTopic();
+            
+            // Add visual feedback
+            const addTopicBtn = document.getElementById('addTopicBtn');
+            addTopicBtn.classList.add('added');
+            setTimeout(() => {
+              addTopicBtn.classList.remove('added');
+            }, 400);
           }
         });
 
