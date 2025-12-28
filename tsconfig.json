@@ -1,0 +1,63 @@
+{
+  "compilerOptions": {
+    // Target modern JavaScript for better performance
+    "target": "ES2020",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    // Allow JavaScript files (useful during migration)
+    "allowJs": true,
+    // Skip type checking of declaration files for faster builds
+    "skipLibCheck": true,
+    // Enable strict type checking for better code quality
+    "strict": true,
+    // Disable emitting files (Next.js handles this)
+    "noEmit": true,
+    // Enable ES module interop for better compatibility
+    "esModuleInterop": true,
+    // Module resolution strategy
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    // Allow importing JSON files
+    "resolveJsonModule": true,
+    // Ensure each file can be safely transpiled
+    "isolatedModules": true,
+    // JSX support for React
+    "jsx": "preserve",
+    // Enable incremental compilation for faster builds
+    "incremental": true,
+    // Path aliases for cleaner imports
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "@/components/*": [
+        "./src/components/*"
+      ],
+      "@/lib/*": [
+        "./src/lib/*"
+      ],
+      "@/styles/*": [
+        "./src/styles/*"
+      ]
+    },
+    // Next.js specific compiler options
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
