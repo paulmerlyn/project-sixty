@@ -19,17 +19,36 @@
         line-height: 1.6;
       }
 
-      h1 {
+      .title-container {
+        text-align: center;
+        margin-bottom: 32px;
+      }
+      
+      .main-title {
         font-family: 'Inter', sans-serif;
-        font-size: 2.5rem;
-        font-weight: 700;
+        font-size: 3rem;
+        font-weight: 800;
         color: #2c3e50;
-        margin-bottom: 24px;
-        letter-spacing: -0.5px;
+        margin-bottom: 8px;
+        letter-spacing: -1px;
         background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      
+      .subtitle {
+        font-family: 'Inter', sans-serif;
+        font-size: 1.5rem;
+        font-weight: 400;
+        color: #7f8c8d;
+        margin: 0;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        border-bottom: 2px solid #3498db;
+        padding-bottom: 8px;
+        display: inline-block;
       }
 
       #rules {
@@ -710,7 +729,10 @@
     </style>
   </head>
   <body>
-    <h1>Just-a-Minute (Family & Friends Edition)</h1>
+    <div class="title-container">
+      <h1 class="main-title">Just-a-Minute</h1>
+      <p class="subtitle">Family & Friends Edition</p>
+    </div>
     <div id="rules">
       <h2>Rules</h2>
       <div id="timer-display">60</div>
