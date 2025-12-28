@@ -63,10 +63,24 @@
         border: 1px solid #eaeaea;
       }
 
+      .timer-controls-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px;
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        border: 1px solid #eaeaea;
+        margin-bottom: 24px;
+      }
+      
+      .timer-buttons {
+        display: flex;
+        gap: 8px;
+      }
+      
       #timer-display {
-        position: absolute;
-        top: 16px;
-        right: 16px;
         font-size: 48px;
         font-weight: 700;
         color: #3498db;
@@ -76,6 +90,9 @@
         box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
         border: 2px solid rgba(52, 152, 219, 0.1);
         font-family: 'Inter', sans-serif;
+        margin-left: 16px;
+        width: 120px;
+        text-align: center;
       }
 
       #rules h2 {
@@ -734,14 +751,19 @@
       <p class="subtitle">Family & Friends Edition</p>
     </div>
     <div id="rules">
-      <h2>Rules</h2>
-      <div id="timer-display">60</div>
-      <p>Players must speak for one minute without:</p>
-      <ul>
-        <li>hesitation</li>
-        <li>deviation</li>
-        <li>repetition</li>
-      </ul>
+      <details class="inner-details">
+        <summary>Rules</summary>
+        <p>Generate (or select) a topic. Start the timer. The player must speak for one minute without:</p>
+        <ul>
+          <li>hesitation</li>
+          <li>deviation</li>
+          <li>repetition</li>
+        </ul>
+        <p>Stop the clock when another player challenges the speaker.</p>
+        <p>For a correct challenge of hesitation, deviation, or repetition, the challenger continues the topic with the time remaining.</p>
+        <p>For an incorrect challenge, the speaker resumes.</p>
+        <p>When the minute is up, rotate to the next player.</p>
+      </details>
       <details class="inner-details">
         <summary>Finer points</summary>
         <p style="text-align: left; margin-bottom: 12px;">
@@ -755,19 +777,22 @@
       <details class="inner-details scoring-details">
         <summary>Scoring</summary>
         <ol>
-          <li>One point for speaking on the one-minute mark</li>
+          <li>One point for the player speaking at the one-minute mark</li>
           <li>One point to the challenger for a correct challenge</li>
           <li>One point to the speaker for an incorrect challenge</li>
-          <li>One point to a speaker who completes an entire minute</li>
+          <li>One bonus point to a speaker who completes an entire minute</li>
         </ol>
       </details>
       <div id="timer">
-        <div class="timer-buttons">
-          <button onclick="startTimer()">Start</button>
-          <button onclick="stopTimer()">Stop</button>
-          <button onclick="resetTimer()">Reset</button>
-          <button onclick="add5()">+5</button>
-          <button onclick="sub5()">-5</button>
+        <div class="timer-controls-container">
+          <div class="timer-buttons">
+            <button onclick="startTimer()">Start</button>
+            <button onclick="stopTimer()">Stop</button>
+            <button onclick="resetTimer()">Reset</button>
+            <button onclick="add5()">+5</button>
+            <button onclick="sub5()">-5</button>
+          </div>
+          <div id="timer-display">60</div>
         </div>
       </div>
       <div
@@ -978,7 +1003,8 @@
       const timerDisplay = document.getElementById('timer-display');
 
       function updateDisplay() {
-        if (timerDisplay) timerDisplay.textContent = timeLeft.toFixed(1);
+        const timerDisplayCentered = document.getElementById('timer-display');
+        if (timerDisplayCentered) timerDisplayCentered.textContent = timeLeft.toFixed(1);
       }
 
       function startTimer() {
