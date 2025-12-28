@@ -401,7 +401,6 @@
         justify-content: space-between;
         align-items: center;
         padding: 14px 0;
-        padding-left: 16px;
         border-bottom: 1px solid #eee;
         transition: background-color 0.2s ease;
       }
@@ -417,10 +416,12 @@
         border: none;
         border-radius: 6px;
         cursor: pointer;
-        margin-left: 8px;
+        margin-left: 4px;
         transition: all 0.3s ease;
         font-family: 'Inter', sans-serif;
         font-weight: 500;
+        position: relative;
+        bottom: 6px;
       }
 
       .plus-btn {
@@ -449,6 +450,8 @@
         color: #3498db;
         margin: 0 16px;
         font-family: 'Inter', sans-serif;
+        flex: 0 0 60px;
+        text-align: center;
       }
 
       .player-name {
@@ -458,6 +461,7 @@
         color: #2c3e50;
         font-family: 'Inter', sans-serif;
         text-align: left;
+        flex: 1;
       }
 
       table {
@@ -1220,7 +1224,7 @@
         players.forEach((player, index) => {
           const div = document.createElement('div');
           div.className = 'scoreboard-item';
-          div.innerHTML = `<span class="player-name">${player.name}</span> <span class="score">${player.score}</span> <button class="plus-btn" data-index="${index}">+1</button> <button class="minus-btn" data-index="${index}">-1</button>`;
+          div.innerHTML = `<span class="player-name">${player.name}</span> <span class="score">${player.score}</span> <div style="display: flex; gap: 4px; align-items: center;"><button class="plus-btn" data-index="${index}">+1</button> <button class="minus-btn" data-index="${index}">-1</button></div>`;
           scoreboard.appendChild(div);
         });
       }
