@@ -43,6 +43,7 @@ export default function Home() {
   return (
     <div style={{
       display: 'flex',
+      flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
       minHeight: '100vh',
@@ -65,14 +66,14 @@ export default function Home() {
               width: '100%',
               padding: '0.75rem 1rem',
               fontSize: '1rem',
-              border: '1px solid #e0e0e0',
+              border: '1px solid #000000',
               borderRadius: '5px',
               marginBottom: '1rem',
               outline: 'none',
               opacity: isLoading ? 0.6 : 1
             }}
             onFocus={(e) => e.target.style.borderColor = '#0070f3'}
-            onBlur={(e) => e.target.style.borderColor = '#e0e0e0'}
+            onBlur={(e) => e.target.style.borderColor = '#000000'}
           />
 
           {error && (
@@ -101,6 +102,28 @@ export default function Home() {
             {isLoading ? 'Verifying...' : 'Submit'}
           </button>
         </form>
+
+        <div style={{
+          marginTop: '3rem',
+          padding: '1.5rem',
+          backgroundColor: '#f8f9fa',
+          border: '1px solid #e0e0e0',
+          borderRadius: '8px',
+          fontSize: '0.875rem',
+          lineHeight: '1.6',
+          color: '#666',
+          textAlign: 'left'
+        }}>
+          <p style={{ marginBottom: '0.75rem' }}>
+            <strong>Intellectual Property Notice</strong>
+          </p>
+          <p style={{ marginBottom: '0.5rem' }}>
+            Access to this site is prohibited except for non-commercial use by invited family and friends of the site&apos;s creator.
+          </p>
+          <p style={{ margin: 0 }}>
+            The format rights, branding, trademark, and other intellectual property associated with &ldquo;Just a Minute&rdquo; are owned by the BBC (British Broadcasting Corporation).
+          </p>
+        </div>
       </div>
     </div>
   )
