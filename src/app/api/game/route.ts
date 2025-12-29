@@ -25,9 +25,9 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    // Read the game HTML file from the project root (not in public directory)
-    // This prevents direct access via URL
-    const filePath = join(process.cwd(), 'game.html')
+    // Read the OBFUSCATED game HTML file from the project root (not in public directory)
+    // This prevents direct access via URL and protects the source code
+    const filePath = join(process.cwd(), 'game.obfuscated.html')
     const htmlContent = await readFile(filePath, 'utf-8')
 
     // Return the game HTML as a response

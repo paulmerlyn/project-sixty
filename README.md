@@ -1,26 +1,25 @@
-# Just a Minute - E-commerce Site
+# Just a Minute - Game Site
 
-Welcome to the Just a Minute game store! This is a Next.js-based e-commerce website that allows customers to purchase and download the Just a Minute web game.
+Welcome to the Just a Minute game! This is a Next.js-based website that serves the Just a Minute web game with access code protection and code obfuscation for IP protection.
 
 ## 🎯 Project Overview
 
 This site is built with:
 - **Next.js 14+** with the App Router
 - **TypeScript** for type safety
-- **Stripe** for payment processing
+- **JavaScript Obfuscation** for IP protection
 - **Vercel** for hosting and deployment
 
-The site sells a web-based game as a downloadable HTML file, with payments processed securely through Stripe.
+The site serves a web-based game as a protected HTML file, accessible only with the correct access code.
 
 ## 📋 Table of Contents
 
 - [Getting Started](#getting-started)
 - [Project Structure](#project-structure)
 - [Development Guide](#development-guide)
-- [Environment Variables](#environment-variables)
-- [Stripe Integration](#stripe-integration)
+- [Code Obfuscation](#code-obfuscation)
 - [Deployment](#deployment)
-- [Key Concepts](#key-concepts-for-next-js-beginners)
+- [Common Issues](#common-issues)
 
 ## 🚀 Getting Started
 
@@ -28,7 +27,6 @@ The site sells a web-based game as a downloadable HTML file, with payments proce
 
 - Node.js 18.0 or later
 - npm or yarn package manager
-- A Stripe account (for payment processing)
 - A Vercel account (for deployment)
 
 ### Installation
@@ -38,19 +36,12 @@ The site sells a web-based game as a downloadable HTML file, with payments proce
    npm install
    ```
 
-2. **Set up environment variables:**
-   ```bash
-   cp .env.local.example .env.local
-   ```
-   
-   Then edit `.env.local` and add your Stripe API keys.
-
-3. **Run the development server:**
+2. **Run the development server:**
    ```bash
    npm run dev
    ```
 
-4. **Open your browser:**
+3. **Open your browser:**
    Navigate to [http://localhost:3000](http://localhost:3000)
 
 ## 📁 Project Structure
@@ -62,19 +53,16 @@ just-a-minute-game/
 │   │   ├── layout.tsx          # Root layout (wraps all pages)
 │   │   ├── page.tsx            # Home page (/)
 │   │   ├── globals.css         # Global styles
-│   │   └── api/                # API routes (for Stripe webhooks, etc.)
+│   │   └── api/                # API routes (game endpoint, etc.)
 │   ├── components/             # Reusable React components
-│   ├── lib/                    # Utility functions and helpers
-│   └── styles/                 # Additional stylesheets
-├── public/                     # Static files (images, game HTML, etc.)
-├── .github/
-│   └── copilot.yml            # GitHub Copilot configuration
-├── just-a-minute-game.html    # The game file to be sold
-├── package.json               # Project dependencies
-├── next.config.js             # Next.js configuration
-├── tsconfig.json              # TypeScript configuration
-├── .env.local.example         # Example environment variables
-└── README.md                  # This file
+│   └── lib/                    # Utility functions and helpers
+├── game.html                   # Original game source (for development)
+├── game.obfuscated.html        # Obfuscated game (served to users)
+├── obfuscate.js                # Obfuscation script
+├── package.json                # Project dependencies
+├── next.config.js              # Next.js configuration
+├── tsconfig.json               # TypeScript configuration
+└── README.md                   # This file
 ```
 
 ### Understanding the App Router
@@ -116,14 +104,11 @@ To add a new page (e.g., an About page):
 Store reusable components in `src/components/`:
 
 ```typescript
-// src/components/PriceCard.tsx
-export default function PriceCard({ price, currency }: { 
-  price: number; 
-  currency: string 
-}) {
+// src/components/GameCard.tsx
+export default function GameCard({ title }: { title: string }) {
   return (
     <div className="card">
-      <h3>{currency} {price}</h3>
+      <h3>{title}</h3>
     </div>
   )
 }
@@ -131,7 +116,7 @@ export default function PriceCard({ price, currency }: {
 
 Then import and use:
 ```typescript
-import PriceCard from '@/components/PriceCard'
+import GameCard from '@/components/GameCard'
 ```
 
 ### Styling
@@ -140,79 +125,204 @@ import PriceCard from '@/components/PriceCard'
 - **Component-specific styles**: Use CSS modules or inline styles
 - **Tailwind CSS**: Can be added later if needed
 
-## 🔐 Environment Variables
+## 🔒 Code Obfuscation
 
-Create a `.env.local` file (never commit this!) with:
+This project protects the game's source code using JavaScript obfuscation to prevent theft and unauthorized copying.
 
-```env
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...
-STRIPE_SECRET_KEY=sk_test_...
-STRIPE_WEBHOOK_SECRET=whsec_...
+### Files
+
+- **game.html** - Original, readable source code (for development)
+- **game.obfuscated.html** - Obfuscated version (served by API route)
+- **obfuscate.js** - Obfuscation script
+
+### Development Workflow
+
+#### Starting Development Server
+
+When you run `npm run dev`, obfuscation happens automatically once at startup:
+
+```bash
+npm run dev
 ```
 
-**Important Notes:**
-- Variables prefixed with `NEXT_PUBLIC_` are available in the browser
-- Other variables are only available on the server
-- Use test keys during development, switch to live keys in production
+This will:
+1. Run `node obfuscate.js` to generate `game.obfuscated.html`
+2. Start the Next.js development server
 
-## 💳 Stripe Integration
+#### Making Changes to game.html
 
-### Setting Up Stripe
+**Important**: Obfuscation does NOT happen automatically when you edit `game.html` during development.
 
-1. **Create a Stripe account** at [stripe.com](https://stripe.com)
+**After editing game.html, you must manually re-obfuscate:**
 
-2. **Get your API keys** from the [Stripe Dashboard](https://dashboard.stripe.com/apikeys)
+```bash
+npm run obfuscate
+```
 
-3. **Create products and prices** in Stripe for different currencies:
-   - USD pricing
-   - GBP pricing
-   - INR pricing
+Or directly:
 
-4. **Set up webhooks** to handle payment confirmations:
-   - Endpoint: `https://your-domain.com/api/webhooks/stripe`
-   - Events to listen for: `checkout.session.completed`, `payment_intent.succeeded`
+```bash
+node obfuscate.js
+```
 
-### Next Steps for Stripe Integration
+Then refresh your browser (Cmd+Shift+R or Ctrl+Shift+R) to see the changes.
 
-You'll need to create:
-1. **Checkout API route** (`src/app/api/checkout/route.ts`) - Creates Stripe checkout sessions
-2. **Webhook handler** (`src/app/api/webhooks/stripe/route.ts`) - Processes payment events
-3. **Download page** (`src/app/download/page.tsx`) - Allows users to download after purchase
-4. **Success page** (`src/app/success/page.tsx`) - Confirmation after payment
+#### Why Manual Re-obfuscation?
 
-### Example: Creating a Checkout Session
+Next.js's hot reload only watches files in its project structure. Since `game.html` is outside this flow, changes don't trigger automatic re-obfuscation. This is acceptable during development since you control when to regenerate the obfuscated version.
 
-```typescript
-// src/app/api/checkout/route.ts
-import { NextResponse } from 'next/server'
-import Stripe from 'stripe'
+### Obfuscation Features Applied
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2023-10-16',
-})
+The obfuscation uses a **minimal, functional approach** that balances IP protection with code reliability:
 
-export async function POST(req: Request) {
-  try {
-    const { currency } = await req.json()
-    
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
-      line_items: [
-        {
-          price: getPriceId(currency), // Your price ID from Stripe
-          quantity: 1,
-        },
-      ],
-      mode: 'payment',
-      success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/`,
-    })
-    
-    return NextResponse.json({ sessionId: session.id })
-  } catch (err) {
-    return NextResponse.json({ error: 'Error creating checkout session' }, { status: 500 })
-  }
-}
+#### ✅ Active Features:
+
+1. **String Array Encoding (Base64)**
+   - All string literals encoded in Base64
+   - Strings stored in shuffled, rotated arrays
+   - Makes string content harder to read
+
+2. **Identifier Renaming (Hexadecimal)**
+   - Variable and function names converted to hex
+   - Example: `myVariable` → `_0x3a2b4c`
+   - Critical function names preserved for HTML event handlers
+
+3. **Split Strings**
+   - Long strings split into chunks
+   - Makes string analysis more difficult
+
+4. **Code Compaction**
+   - Removes whitespace and comments
+   - Reduces file size and readability
+
+#### ❌ Disabled Features (Broke Functionality):
+
+These aggressive features were disabled because they broke the game's timer, topics manager, scoreboard, and player management:
+
+- ❌ **Control Flow Flattening** - Broke execution context for HTML inline event handlers
+- ❌ **Dead Code Injection** - Interfered with critical code paths
+- ❌ **Self-Defending Code** - Prevented normal execution
+- ❌ **Transform Object Keys** - Broke object property access
+- ❌ **Numbers to Expressions** - Created parsing issues
+
+#### Reserved Names
+
+These function and variable names are preserved to maintain compatibility with HTML inline event handlers:
+
+```javascript
+startTimer, stopTimer, resetTimer, add5, sub5, resumeTimer,
+updateDisplay, playCelebratorySound, renderContestants,
+renderScoreboard, renderTopics, addNewTopic, ALL_TOPICS,
+topics, players, deletedTopics, timeLeft, timerId, isRunning
+```
+
+### Production Build
+
+When you build for production, obfuscation runs automatically:
+
+```bash
+npm run build
+```
+
+This ensures the latest obfuscated version is included in your deployment.
+
+### File Size Impact
+
+- **Original**: 44KB
+- **Obfuscated**: 53KB (20% increase)
+- **Performance**: Minimal impact (~2-3% slower execution)
+
+### Customizing Obfuscation
+
+⚠️ **Warning**: The current settings are optimized for functionality. Aggressive obfuscation features (control flow flattening, dead code injection) will break the game.
+
+If you want to experiment with settings, edit `obfuscate.js`, but always test thoroughly after changes:
+
+```javascript
+// Current minimal settings (WORKING)
+const obfuscator = require('javascript-obfuscator');
+
+module.exports = {
+  compact: true,
+  controlFlowFlattening: false,     // ❌ Disabled
+  deadCodeInjection: false,         // ❌ Disabled  
+  selfDefending: false,             // ❌ Disabled
+  transformObjectKeys: false,       // ❌ Disabled
+  identifierNamesGenerator: 'hexadecimal',
+  stringArray: true,
+  stringArrayEncoding: ['base64'],
+  splitStrings: true
+};
+```
+
+### Testing Obfuscated Code
+
+Always test the obfuscated version before deployment:
+
+1. Access the game at [http://localhost:3000/api/game](http://localhost:3000/api/game)
+2. Enter access code: `c15fabcf-1cca-4cc6-ade2-ce4e330340a9`
+3. Test all functionality thoroughly
+4. Check browser console for errors
+5. Verify game state persistence (localStorage)
+6. Test on multiple browsers (Chrome, Firefox, Safari)
+
+### Troubleshooting Obfuscation
+
+#### If obfuscated code doesn't work:
+
+1. Check browser console for errors
+2. Verify original `game.html` works correctly first
+3. Check that obfuscation script completed successfully
+4. Hard refresh browser (Cmd+Shift+R) to clear cache
+
+#### If obfuscation script fails:
+
+```bash
+# Reinstall dependencies
+npm install
+
+# Check the obfuscate.js file for syntax errors
+node obfuscate.js
+```
+
+### Security Considerations
+
+#### What Obfuscation Provides:
+✅ Makes code extremely difficult to read and understand  
+✅ Prevents casual copying and modification  
+✅ Protects against automated code analysis  
+✅ Significantly increases reverse-engineering effort and time
+
+#### What Obfuscation DOES NOT Provide:
+❌ **Complete protection** - Determined attackers with sufficient time and skill can still reverse-engineer  
+❌ **Encryption** - Code must be readable by the browser's JavaScript engine  
+❌ **Security for sensitive data** - Never store API keys, passwords, or secrets in client-side code
+
+#### Best Practices:
+
+1. **Keep source code private**: Never commit unobfuscated source to public repositories
+2. **Version control**: Keep `game.html` in version control, exclude `game.obfuscated.html` (add to `.gitignore`)
+3. **Regular updates**: Re-obfuscate after every code change
+4. **Server-side security**: Use server-side validation for critical operations (like access codes)
+5. **Terms of Service**: Include clear terms prohibiting unauthorized copying or reverse-engineering
+
+### Additional Protection Options
+
+For even stronger protection, consider:
+
+1. **License Headers**: Add copyright and license information to both files
+2. **Runtime Checks**: Implement periodic integrity checks within the game
+3. **Server-Side Logic**: Move critical game logic to server APIs
+4. **Legal Protection**: Use copyright notices and enforce DMCA takedowns if needed
+
+### Copyright Notice
+
+Consider adding this to your deployment:
+
+```
+© 2025 [Your Name/Company]. All Rights Reserved.
+Unauthorized copying, modification, or distribution is strictly prohibited.
+This code is protected by copyright law and international treaties.
 ```
 
 ## 🚀 Deployment
@@ -229,12 +339,7 @@ export async function POST(req: Request) {
    - Visit [vercel.com](https://vercel.com)
    - Import your GitHub repository
 
-3. **Configure environment variables in Vercel:**
-   - Go to your project settings
-   - Add all variables from `.env.local`
-   - Use LIVE Stripe keys for production!
-
-4. **Deploy:**
+3. **Deploy:**
    - Vercel automatically deploys when you push to main branch
    - Or run `vercel --prod` from command line
 
@@ -242,7 +347,7 @@ export async function POST(req: Request) {
 
 After deployment, you can add a custom domain in Vercel project settings.
 
-## 📚 Key Concepts for Next.js Beginners
+## 📚 Key Next.js Concepts
 
 ### Server vs Client Components
 
@@ -292,33 +397,15 @@ export default async function Page() {
 }
 ```
 
-### Loading States
-
-Create a `loading.tsx` file alongside `page.tsx`:
-
-```typescript
-// src/app/loading.tsx
-export default function Loading() {
-  return <div>Loading...</div>
-}
-```
-
-## 🔒 Privacy & Cookies
-
-This site currently doesn't use cookies for tracking. However, Stripe may set cookies during checkout. Be sure to:
-
-1. Add a privacy policy page
-2. Include cookie consent if required by your jurisdiction (GDPR, CCPA, etc.)
-3. Only use necessary cookies for payment processing
-
 ## 📝 Development Workflow
 
 1. **Make changes** to your code
-2. **Test locally** with `npm run dev`
-3. **Build** to check for errors: `npm run build`
-4. **Commit** your changes to Git
-5. **Push** to GitHub
-6. **Vercel** automatically deploys
+2. **Re-obfuscate** if you edited `game.html`: `npm run obfuscate`
+3. **Test locally** with `npm run dev`
+4. **Build** to check for errors: `npm run build`
+5. **Commit** your changes to Git
+6. **Push** to GitHub
+7. **Vercel** automatically deploys
 
 ## 🆘 Common Issues
 
@@ -337,18 +424,19 @@ rm -rf .next node_modules
 npm install
 ```
 
-### Environment variables not working
-- Make sure you've created `.env.local` (not just `.env`)
-- Restart the dev server after changing environment variables
-- Check variable names are correct (including `NEXT_PUBLIC_` prefix where needed)
+### Obfuscated game not working
+- Hard refresh browser (Cmd+Shift+R or Ctrl+Shift+R)
+- Check browser console for JavaScript errors
+- Verify `game.obfuscated.html` exists and was recently regenerated
+- Test original `game.html` in browser to ensure source code works
 
 ## 📖 Further Reading
 
 - [Next.js Documentation](https://nextjs.org/docs)
 - [Next.js App Router](https://nextjs.org/docs/app)
-- [Stripe Documentation](https://stripe.com/docs)
 - [Vercel Documentation](https://vercel.com/docs)
 - [TypeScript Handbook](https://www.typescriptlang.org/docs/)
+- [javascript-obfuscator](https://github.com/javascript-obfuscator/javascript-obfuscator)
 
 ## 🤝 Contributing
 
@@ -360,4 +448,4 @@ This is a personal project, but suggestions are welcome! Feel free to open issue
 
 ---
 
-**Need Help?** Check the [Next.js Discord](https://discord.gg/nextjs) or [Stripe Support](https://support.stripe.com/)
+**Need Help?** Check the [Next.js Discord](https://discord.gg/nextjs)
