@@ -936,9 +936,11 @@
 
       #timer-display {
         margin-left: 0;
-        width: 100%;
+        width: auto;
+        max-width: 100%;
         font-size: 36px;
         order: -1;
+        box-sizing: border-box;
       }
 
       /* Adjust rules and details sections */
@@ -969,6 +971,17 @@
         width: 100%;
         padding: 12px 20px;
         font-size: 0.95rem;
+      }
+
+      /* Keep action buttons small and fixed width */
+      .remove-btn,
+      .select-topic-btn,
+      .remove-topic-btn,
+      .plus-btn,
+      .minus-btn {
+        width: auto !important;
+        min-width: 32px;
+        padding: 6px 6px !important;
       }
 
       /* Adjust form inputs */
@@ -1079,9 +1092,9 @@
         <div class="timer-buttons">
           <button onclick="startTimer()">Start</button>
           <button onclick="stopTimer()">Stop</button>
-          <button onclick="resetTimer()">Reset</button>
           <button onclick="add5()">+5</button>
           <button onclick="sub5()">-5</button>
+          <button onclick="resetTimer()">Reset</button>
         </div>
         <div id="timer-display">60</div>
       </div>
@@ -1099,6 +1112,10 @@
     </div>
   </div>
   <details style="border: 1px solid #eaeaea;">
+    <summary>Scoreboard</summary>
+    <div id="scoreboard"></div>
+  </details>
+  <details style="border: 1px solid #eaeaea;">
     <summary>Manage Players</summary>
     <div id="contestantManager">
       <div
@@ -1108,10 +1125,6 @@
       </div>
     </div>
     <div id="contestantList"></div>
-  </details>
-  <details style="border: 1px solid #eaeaea;">
-    <summary>Scoreboard</summary>
-    <div id="scoreboard"></div>
   </details>
   <details style="border: 1px solid #eaeaea;">
     <summary>Topics Manager</summary>
@@ -1489,6 +1502,13 @@
 
     function renderScoreboard() {
       scoreboard.innerHTML = '';
+      if (players.length === 0) {
+        const emptyMessage = document.createElement('div');
+        emptyMessage.style.cssText = 'padding: 20px; text-align: center; color: #666; font-style: italic;';
+        emptyMessage.textContent = 'No players added yet. Add players via the "Manage Players" panel below.';
+        scoreboard.appendChild(emptyMessage);
+        return;
+      }
       players.forEach((player, index) => {
         const div = document.createElement('div');
         div.className = 'scoreboard-item';
