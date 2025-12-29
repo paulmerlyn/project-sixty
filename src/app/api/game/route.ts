@@ -28,7 +28,16 @@ export async function GET(request: NextRequest) {
     // Read the OBFUSCATED game HTML file from the project root (not in public directory)
     // This prevents direct access via URL and protects the source code
     const filePath = join(process.cwd(), 'game.obfuscated.html')
-    const htmlContent = await readFile(filePath, 'utf-8')
+    let htmlContent = await readFile(filePath, 'utf-8')
+
+    // Ensure favicon links are present in the served HTML
+    if (!htmlContent.includes('favicon.ico')) {
+      const faviconLinks = `
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/favicon.ico" />`
+      htmlContent = htmlContent.replace('</head>', `${faviconLinks}\n</head>`)
+    }
 
     // Return the game HTML as a response
     return new NextResponse(htmlContent, {

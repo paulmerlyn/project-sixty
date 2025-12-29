@@ -12,6 +12,11 @@ export const metadata: Metadata = {
   title: 'Just a Minute - Online Game Store',
   description: 'Purchase and download the Just a Minute game - a fun, challenging web-based game',
   keywords: ['game', 'just a minute', 'web game', 'online game'],
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
 }
 
 /**
