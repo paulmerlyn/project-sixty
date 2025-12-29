@@ -1,83 +1,107 @@
-/**
- * Home Page Component
- * 
- * This is the main landing page for your e-commerce site.
- * In Next.js 14+ with the App Router, page.tsx files define routes.
- * This file creates the route at "/" (the root of your site).
- */
+'use client'
+
+import { useState, FormEvent } from 'react'
+import { useRouter } from 'next/navigation'
 
 export default function Home() {
+  const [accessCode, setAccessCode] = useState('')
+  const [error, setError] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+  const router = useRouter()
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setError('')
+    setIsLoading(true)
+
+    try {
+      // Send access code to server for verification
+      const response = await fetch('/api/verify-access', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ accessCode }),
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        // Access granted - redirect to the protected game
+        router.push('/api/game')
+      } else {
+        // Show error message
+        setError(data.error || 'Invalid access code')
+      }
+    } catch (err) {
+      setError('An error occurred. Please try again.')
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   return (
-    <div className="container">
-      {/* Hero Section */}
-      <section style={{ textAlign: 'center', padding: '3rem 0' }}>
-        <h1 style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>
-          Welcome to Just a Minute!
-        </h1>
-        <p style={{ fontSize: '1.25rem', color: '#666', marginBottom: '2rem' }}>
-          A fun, challenging web-based game that tests your skills and timing.
-        </p>
+    <div style={{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      minHeight: '100vh',
+      padding: '1rem'
+    }}>
+      <div style={{
+        width: '100%',
+        maxWidth: '400px',
+        textAlign: 'center'
+      }}>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            value={accessCode}
+            onChange={(e) => setAccessCode(e.target.value)}
+            placeholder="Enter access code"
+            required
+            disabled={isLoading}
+            style={{
+              width: '100%',
+              padding: '0.75rem 1rem',
+              fontSize: '1rem',
+              border: '1px solid #e0e0e0',
+              borderRadius: '5px',
+              marginBottom: '1rem',
+              outline: 'none',
+              opacity: isLoading ? 0.6 : 1
+            }}
+            onFocus={(e) => e.target.style.borderColor = '#0070f3'}
+            onBlur={(e) => e.target.style.borderColor = '#e0e0e0'}
+          />
 
-        {/* Placeholder for future "Buy Now" button */}
-        <div style={{ marginTop: '2rem' }}>
-          <button className="btn btn-primary" style={{ marginRight: '1rem' }}>
-            Buy Now - Coming Soon
+          {error && (
+            <div style={{
+              color: '#d32f2f',
+              fontSize: '0.9rem',
+              marginBottom: '1rem',
+              textAlign: 'left'
+            }}>
+              {error}
+            </div>
+          )}
+
+          <button
+            type="submit"
+            className="btn btn-primary"
+            disabled={isLoading}
+            style={{
+              width: '100%',
+              padding: '0.75rem 1rem',
+              fontSize: '1rem',
+              opacity: isLoading ? 0.6 : 1,
+              cursor: isLoading ? 'not-allowed' : 'pointer'
+            }}
+          >
+            {isLoading ? 'Verifying...' : 'Submit'}
           </button>
-          <button className="btn btn-secondary">
-            Learn More
-          </button>
-        </div>
-      </section>
-
-      {/* Product Information Section */}
-      <section style={{ marginTop: '3rem' }}>
-        <h2 style={{ textAlign: 'center', marginBottom: '2rem' }}>
-          About the Game
-        </h2>
-
-        <div className="card" style={{ maxWidth: '800px', margin: '0 auto' }}>
-          <h3>What is Just a Minute?</h3>
-          <p>
-            Just a Minute is an engaging web-based game delivered as a single HTML file.
-            After purchase, you&apos;ll receive instant access to download and play the game
-            on any device with a web browser.
-          </p>
-
-          <h3 style={{ marginTop: '1.5rem' }}>Features:</h3>
-          <ul style={{ marginLeft: '1.5rem', marginBottom: '1rem' }}>
-            <li>Single HTML file - no installation required</li>
-            <li>Works on any device with a web browser</li>
-            <li>Instant download after purchase</li>
-            <li>Play offline anytime</li>
-          </ul>
-
-          <h3 style={{ marginTop: '1.5rem' }}>Pricing:</h3>
-          <p>
-            Available in multiple currencies for your convenience:
-          </p>
-          <ul style={{ marginLeft: '1.5rem' }}>
-            <li>US Dollars (USD)</li>
-            <li>British Pounds (GBP)</li>
-            <li>Indian Rupees (INR)</li>
-          </ul>
-        </div>
-      </section>
-
-      {/* Security Notice */}
-      <section style={{ marginTop: '3rem', textAlign: 'center' }}>
-        <div style={{
-          background: '#f0f9ff',
-          padding: '1.5rem',
-          borderRadius: '8px',
-          border: '1px solid #0070f3'
-        }}>
-          <h3>Secure Payment Processing</h3>
-          <p style={{ marginBottom: 0 }}>
-            All payments are securely processed through Stripe.
-            We never store your payment information on our servers.
-          </p>
-        </div>
-      </section>
+        </form>
+      </div>
     </div>
   )
 }

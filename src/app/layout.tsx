@@ -30,28 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {/* Main navigation can go here */}
-        <header className="site-header">
-          <nav className="container">
-            <h1>Just a Minute</h1>
-          </nav>
-        </header>
-
-        {/* Page content */}
-        <main className="main-content">
-          {children}
-        </main>
-
-        {/* Footer appears on all pages */}
-        <footer className="site-footer">
-          <div className="container">
-            <p>&copy; {new Date().getFullYear()} Just a Minute Game Store</p>
-            <p className="privacy-notice">
-              We use Stripe for secure payment processing.
-              No payment information is stored on our servers.
-            </p>
-          </div>
-        </footer>
+        {children}
       </body>
     </html>
   )
