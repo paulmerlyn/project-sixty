@@ -1,16 +1,13 @@
-# Just a Minute - E-commerce Site
+# Project-60
 
-Welcome to the Just a Minute game store! This is a Next.js-based e-commerce website that allows customers to purchase and download the Just a Minute web game.
+Welcome to Project 60! This is a Next.js-based site that white-labels a variant of the BBC's popular Just-a-Minute game format.
 
 ## 🎯 Project Overview
 
 This site is built with:
 - **Next.js 14+** with the App Router
 - **TypeScript** for type safety
-- **Stripe** for payment processing
 - **Vercel** for hosting and deployment
-
-The site sells a web-based game as a downloadable HTML file, with payments processed securely through Stripe.
 
 ## 📋 Table of Contents
 
@@ -56,7 +53,7 @@ The site sells a web-based game as a downloadable HTML file, with payments proce
 ## 📁 Project Structure
 
 ```
-just-a-minute-game/
+project-60/
 ├── src/
 │   ├── app/                    # App Router directory (Next.js 14+)
 │   │   ├── layout.tsx          # Root layout (wraps all pages)
@@ -69,7 +66,7 @@ just-a-minute-game/
 ├── public/                     # Static files (images, game HTML, etc.)
 ├── .github/
 │   └── copilot.yml            # GitHub Copilot configuration
-├── just-a-minute-game.html    # The game file to be sold
+├── project-60-game.html    # The game file
 ├── package.json               # Project dependencies
 ├── next.config.js             # Next.js configuration
 ├── tsconfig.json              # TypeScript configuration
@@ -102,7 +99,7 @@ To add a new page (e.g., an About page):
    export default function About() {
      return (
        <div className="container">
-         <h1>About Just a Minute</h1>
+         <h1>About Project 60</h1>
          <p>Your content here...</p>
        </div>
      )
