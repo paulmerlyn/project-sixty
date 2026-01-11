@@ -13,6 +13,9 @@
 # Production build
 /build
 
+# Obfuscated files (generated, not source)
+*.obfuscated.html
+
 # Misc
 .DS_Store
 *.pem

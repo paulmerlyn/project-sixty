@@ -1,12 +1,10 @@
 # High-level guidance for Copilot the AI assistant
 instructions:
   - Pay attention to any guidance I've added to docs/guidance.md
-  - Principal idea: I'd like to use vibe coding to build a simple web site for ecommerce. I want you to use Next.js. 
-  - The site will need to integrate with Stripe as its payment gateway for handling payments in local currencies – especially US dollars, Indian rupees, and British pounds. 
-  - The volume of transactions will be moderate (this isn't going to be a large-scale venture like eBay!). I want to deploy to Vercel as my cloud provider. 
-  - Keeping costs low is important because I'm self-funding. I have good full-stack skills but I’m not experienced in Next.js, so add plenty of documentation in the code and in README files to help me. 
+  - Principal idea: I'd like to build a simple web site for securely serving a client-side file. I want you to use Next.js. 
+  - The volume of requests will be moderate (this isn't going to be a large-scale venture like eBay!). I want to deploy to Vercel as my cloud provider. 
+  - Keeping costs low is important because I'm self-funding. I have good full-stack skills but I’m not expert in Next.js, so add plenty of documentation in the code and in README files to help me. 
   - Initially, just set up the structure of the project and just a basic “hello world” page. I will later add details of the content and desired site map. Pay attention to good site organization so we can add other pages as needed.  
   - Adhere to consumer privacy regulations and best practices regarding cookies if the site needs to use cookies.
-  - At this point, don’t include any sort of database because I don’t think the site will need to persist any data. The customer details (e.g. email address) and payment transactions will be persisted by Stripe. 
-  - The main product to be sold on the site is a simple web-based game called “Just a Minute”.
-  - After making a purchase via Stripe, the user will be able to access a download button to download the “Just a Minute” game as a single HTML file. 
+  - At this point, don’t include any sort of database because I don’t think the site will need to persist any data.
+  - The main item to be served on the site is a simple web-based game called “Just a Minute”.
