@@ -1,12 +1,6 @@
-# Just-a-Minute Topic Generator
+# Project 60
 
-A comprehensive web application for playing the Just-a-Minute speaking game with player management, scoring, and custom topic features.
-
-## How to Run
-
-1. Open [`index.html`](index.html) in your web browser.
-2. Click the "Generate Random Topic" button to display a random topic.
-3. Use the topic for your 1-minute speech following the rules: no hesitation, deviation, or repetition.
+A comprehensive white-label representation of the BBC's Just-a-Minute game formulated as a digital family and friends edition. Features in-built player registration, topic management, timer, rules, and scoreboard.
 
 ## Features
 
@@ -58,19 +52,7 @@ Contestants must speak for 1 minute without:
 - **Responsive Design**: Works on desktop and mobile devices
 - **Accessibility**: Clean, readable interface with proper contrast
 - **No Dependencies**: Pure HTML, CSS, and JavaScript - no external libraries required
-- **Single File Design**: The entire application is contained in a single HTML file for maximum portability and simplicity
-
-### Design Philosophy
-
-The game is implemented as a single HTML file that can be opened directly in any browser via **File > Open File...**. This design choice was made specifically to:
-
-1. **Maximize Portability**: The single file can be easily shared as an email attachment, copied to USB drives, or transferred between devices without requiring any installation process.
-
-2. **Simplify Usage**: Targeting an older, less technologically sophisticated audience, the single-file approach eliminates complex setup procedures, dependency management, or server requirements.
-
-3. **Ensure Accessibility**: Users can simply double-click the file or use their browser's file open dialog - no command line, no package managers, no configuration needed.
-
-4. **Maintain Compatibility**: Works consistently across different operating systems and devices without requiring specific software installations beyond a modern web browser.
+- **Single File Design**: The entire application is contained in a single file for maximum portability, offline functionality, and reliability
 
 ## Browser Compatibility
 
@@ -98,10 +80,8 @@ Potential features for future versions:
 
 - Multiplayer online mode
 - Game history and statistics
-- Customizable timer durations
+- Multilingual support
 - Themes and visual customization
 - Export/import game data
-- Mobile app version
-
-test commit 1
+- Mobile app versions
 

@@ -1,6 +1,6 @@
 # Project-60
 
-Welcome to Project 60! This is a Next.js-based site that white-labels a variant of the BBC's popular Just-a-Minute game format.
+Welcome to Project 60! This is a Next.js-based site that white-labels a digitl family-and-friends variant of the BBC's popular Just-a-Minute game format.
 
 ## 🎯 Project Overview
 

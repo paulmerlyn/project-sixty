@@ -1,8 +1,8 @@
 {
-  "name": "just-a-minute-ecommerce",
+  "name": "project-60",
   "version": "0.1.0",
   "private": true,
-  "description": "Just a Minute game with access code protection",
+  "description": "project 60 white-label digital family and friends edition of BBC's Just a Minute game format",
   "scripts": {
     "dev": "npm run obfuscate && next dev",
     "build": "npm run obfuscate && next build",

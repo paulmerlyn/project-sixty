@@ -11,7 +11,7 @@ const nextConfig = {
   // Environment variables that should be available on the client side
   // (prefixed with NEXT_PUBLIC_)
   env: {
-    SITE_NAME: 'Just a Minute Game Store',
+    SITE_NAME: 'Project 60',
   },
 }
 

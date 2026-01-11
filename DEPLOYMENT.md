@@ -1,6 +1,6 @@
 # Deploying to Vercel
 
-This guide walks you through deploying your Just a Minute e-commerce site to Vercel.
+This guide walks you through deploying your Project 60 site to Vercel.
 
 ## Prerequisites
 
@@ -81,7 +81,7 @@ After deployment:
 
 1. Go to your Vercel project settings
 2. Click on "Domains"
-3. Add your custom domain (e.g., `justaminute.com`)
+3. Add your custom domain (e.g., `project60.com`)
 4. Follow Vercel's instructions to update your DNS settings
 5. Wait for DNS propagation (can take up to 48 hours, usually much faster)
 

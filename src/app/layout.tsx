@@ -9,9 +9,9 @@ const inter = Inter({ subsets: ['latin'] })
 // Metadata for SEO and browser display
 // These will appear in search results and browser tabs
 export const metadata: Metadata = {
-  title: 'Just a Minute - Online Game Store',
-  description: 'Purchase and download the Just a Minute game - a fun, challenging web-based game',
-  keywords: ['game', 'just a minute', 'web game', 'online game'],
+  title: 'Project 60',
+  description: 'White label family and friends digital edition of BBC\'s "Just a Minute" game format',
+  keywords: ['game', 'web game', 'online game'],
   icons: {
     icon: '/favicon.ico',
     shortcut: '/favicon.ico',
